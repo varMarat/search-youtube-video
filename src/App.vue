@@ -20,10 +20,10 @@ export default{
   },
   beforeMount: function(){
     if(localStorage.token){
-      this.$store.state.flag = true;
+      this.$store.commit('flag', true)
     }
     else{
-      this.$store.state.flag = false;
+      this.$store.commit('flag', false)
     }
   }
 }

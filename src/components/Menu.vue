@@ -12,7 +12,7 @@
             <router-link class="rout" to="/favorites">Избранное</router-link>
           </el-menu-item>
 
-        <el-menu-item class="el-menu-item-distance"></el-menu-item>
+        <el-menu-item class="el-menu-item-distance el-menu-logo"></el-menu-item>
         
         <el-menu-item index="3" @click="$store.commit('logout')">Выйти
             <!-- <router-link class="rout" to="/login">Выйти</router-link> -->
