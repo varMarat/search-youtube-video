@@ -7,9 +7,16 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     flag: false,
+    savedQuery:'',
+    requestList:[]
   },
   getters:{
-
+    doneSavedQuery(state){
+      return state.savedQuery
+    },
+    requestList(state){
+      return state.requestList
+    }
   },
   mutations: {
     flag(state, booleanType){
@@ -36,6 +43,12 @@ export default new Vuex.Store({
     logout(state){
       localStorage.removeItem('token');
       state.flag = false;
+    },
+    requestList(state, query){
+      state.requestList.push(query)
+    },
+    savedQuery(state, requestText){
+      state.savedQuery = requestText
     }
   },
   actions: {

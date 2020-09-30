@@ -9,14 +9,14 @@
         :show-close="false"
         >
         <p>Запрос</p>
-        <el-input ></el-input>
+        <el-input :placeholder="getQuery" v-model="inputQuery"></el-input>
         <p>Название</p>
-        <el-input ></el-input>
+        <el-input placeholder="Укажите название" v-model="inputTitle"></el-input>
         <p>Сортировать по</p>
         <el-select v-model="value" placeholder="Select">
         <el-option
-            v-for="item in options"
-            :key="item.value"
+            v-for="(item, index) in options"
+            :key="index"
             :label="item.label"
             :value="item.value"
             width="100%">
@@ -30,7 +30,7 @@
   </div>
         <span slot="footer" class="dialog-footer">
             <el-button @click="doNotSave">Не сохранять</el-button>
-            <el-button type="primary">Сохранить</el-button>
+            <el-button @click="saveQuerie" type="primary">Сохранить</el-button>
         </span>
     </el-dialog>
 </template>
@@ -41,12 +41,38 @@ export default{
     props:['active'],
     data(){
         return{
-            valueSlider:0
+            valueSlider:0,
+            inputQuery:'',
+            inputTitle:'',
+            options: [
+            {
+                value: 'Option1',
+                label: 'Option1'
+            }, 
+            {
+                value: 'Option2',
+                label: 'Option2'
+            },
+            ],
+            value: 'value'
         }
     },
-    methods:{
+    methods : {
         doNotSave(){
             this.$emit('doNotSave')
+        },
+        saveQuerie(){
+            this.$store.commit('requestList', {
+                query: this.inputQuery,
+                title: this.inputTitle!=''? this.$store.getters.doneSavedQuery:this.inputTitle,
+                numberOfVideos: this.valueSlider
+            })
+            this.$emit('doNotSave')
+        }
+    },
+    computed:{
+        getQuery(){
+            return this.$store.getters.doneSavedQuery
         }
     }
 }

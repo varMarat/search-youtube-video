@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1>Favorites</h1>
+        <div>{{getRequestList}}</div>
     </div>
 </template>
 
@@ -10,6 +11,11 @@ export default{
     data(){
         return{
 
+        }
+    },
+    computed:{
+        getRequestList(){
+            return this.$store.getters.requestList
         }
     }
 }
