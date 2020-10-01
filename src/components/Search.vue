@@ -93,7 +93,6 @@ export default{
         requestApi(){
             this.$store.commit('savedQuery', this.input)
             this.$store.dispatch('getVideosFromApi', this.input).then((res)=>{
-                console.log(res)
                 this.videos = res.data.items
             })
         },
@@ -105,7 +104,6 @@ export default{
         },
         save(){
             this.activeModal= !this.activeModal
-            console.log('save')
         }
     },
     computed:{

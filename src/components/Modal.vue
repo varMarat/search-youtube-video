@@ -63,8 +63,8 @@ export default{
         },
         saveQuerie(){
             this.$store.commit('requestList', {
-                query: this.inputQuery,
-                title: this.inputTitle!=''? this.$store.getters.doneSavedQuery:this.inputTitle,
+                query: this.inputQuery!=''? this.inputQuery:this.getQuery,
+                title: this.inputTitle,
                 numberOfVideos: this.valueSlider
             })
             this.$emit('doNotSave')
